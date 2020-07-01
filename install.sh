@@ -1,14 +1,26 @@
 #!/bin/bash
+# Copyright 2020 The TKG Contributors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 #
 # Script adjust all required file in TKG installation to work with a local harbor.
 #
 # it fixes tkg provider files and generate required patch set check gen-patch.sh
 # it generate temlate.yaml file and inject that file to containered.
 #
-#  at first kind already running or if double install. N kinds running, it will stop and rm all.
-#  as soon as first kind session is up, it injects a correct file for container
-#  it busy waiting so if something is wrong with docker it will wait in loop.
-#
+# at first kind already running or if double install. N kinds running, it will stop and rm all.
+# as soon as first kind session is up, it injects a correct file for container
+# it busy waiting so if something is wrong with docker it will wait in loop.
 #
 # Mustafa mbayramo@vmware.com
 #
@@ -17,8 +29,18 @@ repo=harbor.vmwarelab.edu
 export TKG_CUSTOM_IMAGE_REPOSITORY=harbor.vmwarelab.edu/library
 export REPO=harbor.vmwarelab.edu
 
+# version kind 
 KIND_VER="1.18.3"
+# where is your vsphere provider is 
 TKG_PROVIDER_DIR="$HOME/.tkg/providers"
+
+# change this  
+DNS="172.16.254.201"
+REPO="harbor.vmwarelab.edu"
+DOMAIN="vmwarelab.edu"
+
+rm -rf ~/.kube
+rm -rf $TKG_PROVIDER_DIR
 
 #login to harbor
 docker login $repo
