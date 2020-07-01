@@ -1,4 +1,7 @@
-# tkg-harbor-install
+# tkg and harbor install tooling
+
+Tested on ubuntu vm.
+Harbor and CI on same machnine, if you run Harbor on another node, copy harbor-install.sh it will prepare node.
 
 It contains a set of script to adjust default VMware TKG package and install TKG in pair with a local instance of Harbor.
 
