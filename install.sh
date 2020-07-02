@@ -66,8 +66,8 @@ echo "Generating patch for dev and prod files."
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 bash ${__dir}/gen-patch.sh
 
-patch --verbose --dry-run --ignore-whitespace --fuzz 3 $HOME/.tkg/providers/infrastructure-vsphere/v0.6.5/cluster-template-dev.yaml < patch_dev
-patch --verbose --dry-run --ignore-whitespace --fuzz 3 $HOME/.tkg/providers/infrastructure-vsphere/v0.6.5/cluster-template-prod.yaml < patch_prod
+patch --verbose --ignore-whitespace --fuzz 3 $HOME/.tkg/providers/infrastructure-vsphere/v0.6.5/cluster-template-dev.yaml < patch_dev
+patch --verbose --ignore-whitespace --fuzz 3 $HOME/.tkg/providers/infrastructure-vsphere/v0.6.5/cluster-template-prod.yaml < patch_prod
 
 # get container sid
 sid=$(docker ps| grep kind| grep $KIND_VER | cut -d' ' -f1)
